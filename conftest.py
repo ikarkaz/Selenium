@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 def pytest_addoption(parser):
-    parser.addoption('--language', action='store', default='en',
+    parser.addoption('--language', action='store', default='ru',
                      help="Language: en or ru")
 
 @pytest.fixture(scope="function")
@@ -12,6 +12,6 @@ def browser(request):
     options = Options()
     options.add_experimental_option('prefs', {'intl.accept_languages': user_language})
     browser = webdriver.Chrome(options=options)
+    browser.implicitly_wait(6)
     yield browser
-    print("\nquit browser..")
     browser.quit()
