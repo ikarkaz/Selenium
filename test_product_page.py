@@ -1,4 +1,5 @@
-from .Pages.basket_page import AddToCard
+from .Pages.product_page import AddToCard
+from .Pages.basket_page import BasketPage
 
 
 link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
@@ -6,7 +7,8 @@ link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?prom
 def test_add_to_card (browser):
     page = AddToCard(browser, link)
     page.open()
-    assert page.click_btn() and page.check_goods() and page.check_price(), "Test not Good"
+    assert page.check_buy, "BuyError"
+
 
 def test_guest_should_see_login_link_on_product_page(browser):
     link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
