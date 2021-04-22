@@ -11,9 +11,9 @@ class LoginPageLocators():
     REGISTR_BTN = (By.NAME, "registration_submit")
 
 class AddToCardLocators():
-    ADD_TO_CARD_BTN = (By.CSS_SELECTOR ,".btn-add-to-basket")
-    ALLERT_1 = ("alertinner")
-    ALLERT_3 = (".alertinner strong")
-    NAME = (".product_main")
-    PRICE = (".price_color")
-    BASCET_BTN = (".btn btn-default")
+    ADD_TO_CARD_BTN = (By.CSS_SELECTOR,".btn-add-to-basket")
+    BASKET_NAME = (By.CSS_SELECTOR,"#basket_formset > div > div > div.col-sm-4 > h3 > a")
+    BASKET_PRICE = (By.CSS_SELECTOR,"#basket_formset > div > div > div:nth-child(5) > p")
+    NAME = (By.CSS_SELECTOR,"#content_inner > article > div.row > div.col-sm-6.product_main > h1")
+    PRICE = (By.CSS_SELECTOR, ".price_color")
+    BASCET_BTN = (By.CSS_SELECTOR, "#default > header > div.page_inner > div > div.basket-mini.pull-right.hidden-xs > span > a")

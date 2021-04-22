@@ -6,4 +6,4 @@ link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook
 def test_add_to_card (browser):
     page = AddToCard(browser, link)
     page.open()
-    assert page.click_btn() and page.check_goods() and page.check_price(), "Test not Good"
+    assert page.click_btn(), "Test not Good"

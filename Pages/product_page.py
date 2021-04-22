@@ -19,16 +19,21 @@ class AddToCard(BasePage):
             print("No second alert presented")
     
     def click_btn(self):
+        price = self.browser.find_element(*AddToCardLocators.PRICE).text.strip()
+        name = self.browser.find_element(*AddToCardLocators.NAME).text.strip()
         btn= self.browser.find_element(*AddToCardLocators.ADD_TO_CARD_BTN)
+        time.sleep(4)
         btn.click()
         self.solve_quiz_and_get_code()
-        time.sleep(290)
-        return True
+        self.browser.find_element(*AddToCardLocators.BASCET_BTN).click()
+        return 
         
-    def check_goods(self):
-        # Ждем появления аллертов.
-        #Получаем все элементы. В 1 элементе проверяем имя книги с .... надо считать имя книги заранее, во вторм цену .. так же надо считать цену заранее
-        return True
-    def check_price(self):
-        return True
-
+    def check_price(self, price):
+      assert self.browser.find_element(*AddToCardLocators.BASKET_PRICE).text.strip() == price, 'Price: '+ price +";" +self.browser.find_element(*AddToCardLocators.BASKET_PRICE).text.strip()
+    def check_goods(self, name):
+        try:
+            assert self.browser.find_element(*AddToCardLocators.BASKET_NAME).text.strip() == name, 'Name: '+ name +";" +self.browser.find_element(*AddToCardLocators.BASKET_NAME).text.strip()
+        except Exception as ex:
+            with open("log.txt", 'w+t', encoding='utf-8') as log:
+                log.write(str(ex))
+                raise ex
