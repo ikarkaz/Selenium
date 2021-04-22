@@ -11,9 +11,8 @@ class LoginPageLocators():
     REGISTR_BTN = (By.NAME, "registration_submit")
 
 class AddToCardLocators():
-    ADD_TO_CARD_BTN = (By.CSS_SELECTOR ,".btn-add-to-basket")
-    ALLERT_1 = ("alertinner")
-    ALLERT_3 = (".alertinner strong")
-    NAME = (".product_main")
-    PRICE = (".price_color")
-    BASCET_BTN = (".btn btn-default")
+    BASCET_LINK = (By.CSS_SELECTOR, "#bascet_link")
+
+class BasePageLocators():
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
+    LOGIN_LINK_INVALID = (By.CSS_SELECTOR, "#login_link_inc")
