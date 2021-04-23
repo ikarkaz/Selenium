@@ -1,13 +1,15 @@
 from .Pages.product_page import AddToCard
 from .Pages.basket_page import BasketPage
+import pytest
 
 
-link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
-
-def test_add_to_card (browser):
+@pytest.mark.param
+@pytest.mark.parametrize('link', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+def test_add_to_card (browser, link):
+    link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer{link}"
     page = AddToCard(browser, link)
     page.open()
-    assert page.check_buy, "BuyError"
+    assert page.check_buy(), "BuyError"
 
 
 def test_guest_should_see_login_link_on_product_page(browser):

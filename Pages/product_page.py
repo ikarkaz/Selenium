@@ -25,11 +25,17 @@ class AddToCard(BasePage):
         except NoAlertPresentException:
             print("No second alert presented")
     
+    def alert_check(self, what, *locator):
+        assert self.browser.find_element(locator[0], locator[1]).text.strip() == what, "AllertError: "  + what
+        return True
+
     def click_btn(self):
         self.price = self.browser.find_element(*AddToCardLocators.PRICE).text.strip()
         self.name = self.browser.find_element(*AddToCardLocators.NAME).text.strip()
         btn= self.browser.find_element(*AddToCardLocators.ADD_TO_CARD_BTN)
         btn.click()
         self.solve_quiz_and_get_code()
+        self.alert_check(self.name, *AddToCardLocators.Allert_Name)
+        self.alert_check(self.price, *AddToCardLocators.Allert_price)
         self.browser.find_element(*AddToCardLocators.BASCET_BTN).click()
         return BasketPage(self.browser, self.browser.current_url)

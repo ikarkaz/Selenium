@@ -17,6 +17,8 @@ class AddToCardLocators():
     NAME = (By.CSS_SELECTOR,"#content_inner > article > div.row > div.col-sm-6.product_main > h1")
     PRICE = (By.CSS_SELECTOR, ".price_color")
     BASCET_BTN = (By.CSS_SELECTOR, "#default > header > div.page_inner > div > div.basket-mini.pull-right.hidden-xs > span > a")
+    Allert_Name = (By.CSS_SELECTOR,'#messages > div:nth-child(1) > div > strong')
+    Allert_price = (By.CSS_SELECTOR,'#messages > div.alert.alert-safe.alert-noicon.alert-info.fade.in > div > p:nth-child(1) > strong')
 
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
