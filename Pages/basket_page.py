@@ -16,7 +16,4 @@ class BasketPage(BasePage):
                 log.write(str(ex))
                 raise ex
         return True
-        
-    def element_not_found (self):
-        #отрицательная проверка
-        pass
+

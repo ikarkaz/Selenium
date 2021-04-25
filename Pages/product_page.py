@@ -39,3 +39,7 @@ class AddToCard(BasePage):
         self.alert_check(self.price, *AddToCardLocators.Allert_price)
         self.browser.find_element(*AddToCardLocators.BASCET_BTN).click()
         return BasketPage(self.browser, self.browser.current_url)
+
+    def should_not_be_success_message(self, *locator):
+        assert self.is_not_element_present(locator), \
+            "Success message is presented, but should not be"
