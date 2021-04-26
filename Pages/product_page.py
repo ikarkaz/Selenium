@@ -1,7 +1,10 @@
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 from .base_page import BasePage
 from .basket_page import BasketPage
-from selenium.common.exceptions import NoAlertPresentException
-import math, time
+from selenium.common.exceptions import NoAlertPresentException, TimeoutException
+import math
 from .locators import AddToCardLocators
 
 class AddToCard(BasePage):
@@ -34,7 +37,11 @@ class AddToCard(BasePage):
         self.name = self.browser.find_element(*AddToCardLocators.NAME).text.strip()
         btn= self.browser.find_element(*AddToCardLocators.ADD_TO_CARD_BTN)
         btn.click()
-        self.solve_quiz_and_get_code()
+        try:
+            WebDriverWait(self.browser,4).until(EC.alert_is_present())
+            self.solve_quiz_and_get_code()
+        except TimeoutException:
+            pass
         self.alert_check(self.name, *AddToCardLocators.Allert_Name)
         self.alert_check(self.price, *AddToCardLocators.Allert_price)
         self.browser.find_element(*AddToCardLocators.BASCET_BTN).click()
@@ -43,3 +50,7 @@ class AddToCard(BasePage):
     def should_not_be_success_message(self, *locator):
         assert self.is_not_element_present(locator), \
             "Success message is presented, but should not be"
+
+    def guest_cant_see_success_message_after_adding_product_to_basket(self):
+        basket = self.click_btn()
+        assert self.is_not_element_present(*AddToCardLocators.Allert_Name)
