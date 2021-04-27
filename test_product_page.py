@@ -65,7 +65,7 @@ class TestUserAddToBasketFromProductPage(BasePage):
     def setup(self, browser):
         link = " "
         email =  random.randint(1, 9)+ "@fakemail.org"
-        password = random.randint(1, 9)
+        password = random.randbytes(9)
 
     def test_user_cant_see_success_message(self, browser):
         link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
