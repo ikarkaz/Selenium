@@ -38,3 +38,22 @@ class BasePage():
     def go_to_basket_page(self):
         link = self.browser.find_element(*AddToCardLocators.BASCET_LINK)
         link.click()
+
+    def is_disappeared(self, how, what, timeout=4):
+        try:
+            WebDriverWait(self.browser, timeout, 1, TimeoutException).\
+                until_not(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+
+        return True
+
+def should_be_authorized_user(self):
+    assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                 " probably unauthorised user"
+
+    def basket_is_empty(self):
+        allert_text = {'en': "Your basket is empty.", "ru": "Ваша корзина пуста"}
+        assert WebDriverWait(self.browser, 5).until_not(EC.presence_of_element_located((By.ID, "basket-items")))
+        assert WebDriverWait(self.browser, 5).until(EC.text_to_be_present_in_element((By.ID, 'content_inner'), allert_text['en']))
+

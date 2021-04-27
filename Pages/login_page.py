@@ -15,3 +15,6 @@ class LoginPage(BasePage):
 
     def should_be_register_form(self):
         assert (self.browser.find_element(*LoginPageLocators.REGISTR_FORM)) and (self.browser.find_element(*LoginPageLocators.REGISTR_BTN)), "REGISTRATE not FOUND"
+
+    def register_new_user(self, email, password):
+        pass

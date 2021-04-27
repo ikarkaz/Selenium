@@ -52,5 +52,10 @@ class AddToCard(BasePage):
             "Success message is presented, but should not be"
 
     def guest_cant_see_success_message_after_adding_product_to_basket(self):
-        basket = self.click_btn()
-        assert self.is_not_element_present(*AddToCardLocators.Allert_Name)
+        btn= self.browser.find_element(*AddToCardLocators.ADD_TO_CARD_BTN)
+        btn.click()
+        try:
+            assert self.is_not_element_present(*AddToCardLocators.Allert_Name), "Success massage was founded"
+        except:
+            return True
+        return False
